@@ -44,6 +44,7 @@ Example:
 ```
 
 > Max No. of Groups: 20
+
 > Username Format: First Initial+Lastname (dfriens)
 
 *Output:*
