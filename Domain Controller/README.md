@@ -20,13 +20,13 @@ This will generate users and local admins on your AD forest.
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 ```
 
-```shell
+```
 Get-NetIPAddress
 ```
 
 ### Joining the Workstation to the domain
 
-```shell
+```
 Add-Computer -Domainname moros.local -Credential moros\Administrator -Force -Restart
 ```
 
@@ -34,14 +34,14 @@ Add-Computer -Domainname moros.local -Credential moros\Administrator -Force -Res
 
 To generate a random user, run the following command:
 
-```shell
+```powershell
 .\rand_users.ps1 ad-schema.json <NUM Users> <NUM Groups> <NUM LocalAdmins>
 
 Example:
 .\rand_users.ps1 ad-schema.json 5 5 3
 ```
 
-> Max No. of Groups: 20
+> Max No. of Groups: 10
 
 *Output:*
 
