@@ -1,5 +1,5 @@
-param ([string][ValidateNotNullOrEmpty()]$Password = "Password Placeholder",
-       [string]$user = "User Placeholder",
+param ([string][ValidateNotNullOrEmpty()]$Password = "P@$$w0rd123",
+       [string]$user = "Administrator",
        [string]$domain = "moros.local")
 
 Write-Host -ForegroundColor Yellow "[*] Joining AD Domain"

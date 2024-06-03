@@ -4,6 +4,7 @@
 2. Run `rand_users.ps1` script to generate a list of users
 3. Copy `generate_ad.ps1, ad-schema.json` to the DC @ `C:\Windows\Tasks`
 4. Run `.\generate_ad.ps1 ad-schema.json`
+5. You can undo all groups and users by running `.\generate_ad.ps1 ad-schema.json -Undo`
 
 This will generate users and local admins on your AD forest.
 
