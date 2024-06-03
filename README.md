@@ -13,7 +13,7 @@ This will generate users and local admins on your AD forest.
 1. Use `sconfig` to:
     - Change the hostname
     - Change the IP address to static
-    - Change the DNS server to our own IP address
+    - Change the DNS server to our own IP address (or 127.0.0.1)
 
 2. Install the Active Directory Windows Feature
 
@@ -26,6 +26,8 @@ Get-NetIPAddress
 ```
 
 ### Joining the Workstation to the domain
+
+> Make sure the workstation's DNS is set to the DC IP
 
 ```shell
 Add-Computer -Domainname moros.local -Credential moros\Administrator -Force -Restart
@@ -43,6 +45,8 @@ Example:
 ```
 
 > Max No. of Groups: 20
+
+> Username Format: First Initial+Lastname (dfriens)
 
 *Output:*
 
