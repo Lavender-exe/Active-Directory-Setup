@@ -2,10 +2,20 @@
 
 Scripts to stand up a throwaway Active Directory lab: build a new forest/DC from
 a config file, install role services (ADCS, ADFS, RSAT/ADWS), populate the
-domain with random users/groups, and join workstations.
+domain with random users/groups, and join workstations. It doubles as a
+**defensive lab**: optionally plant common attacker misconfigurations so blue
+teamers can practise detection and remediation (see `Vulnerabilities\`).
 
 > These scripts intentionally weaken security (e.g. password policy) for lab
 > use. Run them only on disposable lab machines, never in production.
+
+## Layout
+
+| Folder                | Purpose |
+|-----------------------|---------|
+| `Domain Controller\`  | Build the forest/DC, install roles (ADCS/ADFS/RSAT), generate users |
+| `Workstation\`        | Join a workstation/member server to the domain |
+| `Vulnerabilities\`    | Plant (and undo) intentional AD misconfigurations for defensive practice |
 
 ## Quick start
 

@@ -1,0 +1,74 @@
+{
+  "domain": "moros.local",
+  "vulnerabilities": {
+    "kerberoasting": {
+      "enabled": true,
+      "accounts": [
+        { "name": "svc-sql", "spn": "MSSQLSvc/sql01.moros.local:1433", "password": "Summer2024" },
+        { "name": "svc-web", "spn": "HTTP/web01.moros.local", "password": "Welcome1" }
+      ]
+    },
+    "asrepRoasting": {
+      "enabled": true,
+      "users": ["asrep-user"]
+    },
+    "unconstrainedDelegation": {
+      "enabled": true,
+      "accounts": [
+        { "name": "svc-unconstrained", "password": "Password1" }
+      ]
+    },
+    "constrainedDelegation": {
+      "enabled": false,
+      "accounts": [
+        { "name": "svc-constrained", "password": "Password1", "allowedTo": ["cifs/dc01.moros.local"] }
+      ]
+    },
+    "dangerousAcl": {
+      "enabled": true,
+      "grants": [
+        { "identity": "asrep-user", "target": "Domain Admins", "right": "GenericAll" }
+      ]
+    },
+    "dcsync": {
+      "enabled": true,
+      "identity": "asrep-user"
+    },
+    "credentialExposure": {
+      "enabled": true,
+      "descriptions": [
+        { "user": "svc-sql", "text": "Service account. Temp password: Summer2024 (change me!)" }
+      ],
+      "passwordNeverExpires": ["svc-sql", "svc-web"]
+    },
+    "dangerousGroups": {
+      "enabled": true,
+      "memberships": [
+        { "member": "asrep-user", "group": "DnsAdmins" }
+      ]
+    },
+    "adcs": {
+      "enabled": false,
+      "templates": [
+        { "type": "ESC1", "templateName": "ESC1-VulnUser", "cloneFrom": "User", "enrollPrincipal": "Domain Users" },
+        { "type": "ESC2", "templateName": "ESC2-AnyPurpose", "cloneFrom": "User", "enrollPrincipal": "Domain Users" },
+        { "type": "ESC3", "templateName": "ESC3-EnrollAgent", "cloneFrom": "User", "enrollPrincipal": "Domain Users" }
+      ],
+      "esc4": [
+        { "templateName": "User", "identity": "asrep-user", "right": "WriteDacl" }
+      ],
+      "esc6": { "enabled": true }
+    },
+    "adfs": {
+      "enabled": false,
+      "serviceAccount": "svc-adfs",
+      "addToGroup": "Domain Admins",
+      "dkmKeyReadIdentity": "asrep-user"
+    },
+    "adws": {
+      "enabled": false,
+      "exposeFirewall": true,
+      "firewallRuleName": "ADWS-Lab-Exposure"
+    }
+  }
+}
