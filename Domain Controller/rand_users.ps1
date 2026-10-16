@@ -1,8 +1,9 @@
-param( 
+param(
   [Parameter(Mandatory = $true)] $OutputJSONFile,
   [int]$UserCount,
   [int]$GroupCount,
-  [int]$LocalAdminCount
+  [int]$LocalAdminCount,
+  [string]$Domain = "moros.local"
 )
 
 $group_names = [System.Collections.ArrayList](Get-Content "data/group_names.txt")
@@ -62,8 +63,8 @@ for ( $i = 1; $i -le $UserCount; $i++ ) {
   $passwords.Remove($password)
 }
 
-ConvertTo-Json -InputObject @{ 
-  "domain" = "moros.local"
+ConvertTo-Json -InputObject @{
+  "domain" = "$Domain"
   "groups" = $groups
   "users"  = $users
 } | Out-File $OutputJSONFile

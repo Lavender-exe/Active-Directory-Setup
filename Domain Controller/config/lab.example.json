@@ -1,0 +1,46 @@
+{
+  "domain": {
+    "fqdn": "moros.local",
+    "netbios": "MOROS",
+    "safeModePassword": "DSRM-P@ssw0rd!",
+    "forestMode": "WinThreshold",
+    "domainMode": "WinThreshold"
+  },
+  "network": {
+    "hostname": "DC01",
+    "ipAddress": "10.0.0.10",
+    "prefixLength": 24,
+    "gateway": "10.0.0.1",
+    "dnsServer": "127.0.0.1"
+  },
+  "roles": [
+    {
+      "type": "ADCS",
+      "target": "local",
+      "caType": "EnterpriseRootCA",
+      "caCommonName": "moros-CA",
+      "validityYears": 5
+    },
+    {
+      "type": "ADFS",
+      "target": "local",
+      "serviceFqdn": "adfs.moros.local",
+      "displayName": "moros ADFS",
+      "certThumbprint": null,
+      "serviceAccount": "MOROS\\svc-adfs",
+      "serviceAccountPassword": "Svc-P@ssw0rd!"
+    },
+    {
+      "type": "RSAT",
+      "target": "local"
+    }
+  ],
+  "users": {
+    "schema": "ad-schema.json",
+    "generate": {
+      "count": 15,
+      "groups": 5,
+      "localAdmins": 3
+    }
+  }
+}
